@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helpers: url buildURL buildURL 丢弃 url 中的哈希标记 1`] = `"/simple/get?method=get&params=%7B%22foo%22:%7B%22foo%22:%22bar%22,%22baz%22:null%7D%7D"`;
+
+exports[`helpers: url buildURL buildURL 保留 url 中已经存在的参数 1`] = `"/base/get?boo=bar&method=get&params=%7B%22foo%22:%7B%22foo%22:%22@:$,+%22%7D%7D"`;
+
+exports[`helpers: url buildURL buildURL 参数值为对象 1`] = `"/simple/get?method=get&params=%7B%22foo%22:%7B%22bar%22:%22baz%22%7D%7D"`;
+
+exports[`helpers: url buildURL buildURL 参数值为数组 1`] = `"/simple/get?method=get&params=%7B%22foo%22:[%22bar%22,%22baz%22]%7D"`;
+
+exports[`helpers: url buildURL buildURL 基本使用 1`] = `"/simple/get?method=get&params=%7B%22a%22:1,%22b%22:2%7D"`;
+
+exports[`helpers: url buildURL buildURL 特殊字符支持 1`] = `"/simple/get?method=get&params=%7B%22foo%22:%7B%22foo%22:%22@:$,+%22%7D%7D"`;
+
+exports[`helpers: url buildURL buildURL 空值(undefined | null) 1`] = `"/simple/get?method=get&params=%7B%22foo%22:%7B%22foo%22:%22bar%22,%22baz%22:null%7D%7D"`;
+
+exports[`helpers: url buildURL buildURL参数值为 Date 1`] = `"/base/get?boo=bar&method=get&params=%7B%22foo%22:%7B%22date%22:%222023-03-25T15:38:31.189Z%22%7D%7D"`;
