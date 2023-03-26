@@ -16,6 +16,7 @@ export function buildURL(url: string, params?: any): string {
     return url
   }
 
+  // TODO: 使用函数式的方式重构下述逻辑
   const serializedParams = Object.entries(params)
     .filter(([, val]) => !isFalsy(val)) // 忽略空值
     .map(([key, val]) => (isArray(val) ? [key + '[]', val] : [key, val])) // 处理数组
