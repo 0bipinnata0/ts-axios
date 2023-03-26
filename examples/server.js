@@ -29,6 +29,7 @@ router.get('/simple/get', function (req, res) {
     msg: 'Hello World!',
   })
 })
+
 router.get('/base/get', function (req, res) {
   res.json(req.query)
 })
@@ -50,6 +51,24 @@ router.post('/base/buffer', function (req, res) {
   })
 })
 
+router.get('/error/get', function (req, res) {
+  if (Math.random() > 0.5) {
+    res.json({
+      msg: 'Hello World!',
+    })
+  } else {
+    res.status(500)
+    res.end()
+  }
+})
+
+router.get('/error/timeout', function (req, res) {
+  setTimeout(() => {
+    res.json({
+      msg: 'Hello World!',
+    })
+  }, 3000)
+})
 app.use(router)
 
 const port = process.env.PORT || 8070
