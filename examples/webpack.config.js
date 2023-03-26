@@ -5,6 +5,9 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
   mode: 'development',
+  devServer: {
+    hot: true,
+  },
   entry: fs.readdirSync(__dirname).reduce((entries, dir) => {
     const fullDir = path.join(__dirname, dir)
     if (fs.statSync(fullDir).isDirectory()) {
@@ -19,7 +22,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].js',
-    publicPath: '/build/',
+    publicPath: '/__build__/',
+    hotUpdateChunkFilename: '[id].[hash].hot-update.js',
+    hotUpdateMainFilename: '[runtime].[hash].hot-update.json',
   },
   module: {
     rules: [
@@ -41,7 +46,9 @@ module.exports = {
   },
   plugins: [
     new ESLintWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin({
+      logLevel: 'verbose',
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
 }
