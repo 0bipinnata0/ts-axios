@@ -23,3 +23,23 @@ export function processHeaders(headers: any, data: any): any {
   }
   return headers
 }
+
+export function parseHeaders(headers: string): Record<string, any> {
+  let parsed = Object.create(null)
+  if (!headers) {
+    return parsed
+  }
+  const entities = headers
+    .split('\r\n')
+    .map((i) => i.trim())
+    // 清楚无效项
+    .filter((i) => i.length > 0)
+    // 清楚无效项
+    .filter((i) => i[0] !== ':')
+    .map((line) => {
+      const [key, ...values] = line.split(':')
+      return [key, values.join(':').trim()]
+    })
+
+  return Object.fromEntries(entities)
+}
