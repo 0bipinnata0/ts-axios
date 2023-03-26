@@ -117,3 +117,24 @@ axios({
   url: '/base/post',
   data: searchParams,
 })
+
+axios({
+  method: 'post',
+  url: '/base/post',
+  data: {
+    a: 1,
+    b: 2,
+  },
+}).then((res) => console.info(res))
+
+axios({
+  method: 'post',
+  url: '/base/post',
+  // 和上面的区别在于返回的json串不是string
+  // TODO: 需要将header解析成对象
+  responseType: 'json',
+  data: {
+    a: 3,
+    b: 4,
+  },
+}).then((res) => console.info(res))
