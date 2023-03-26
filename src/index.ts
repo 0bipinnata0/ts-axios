@@ -1,12 +1,13 @@
-import { transformRequest } from './helpers/data'
+import { transformRequest, transformResponse } from './helpers/data'
 import { processHeaders } from './helpers/headers'
 import { buildURL } from './helpers/url'
-import type { AxiosPromise, AxiosRequestConfig } from './types'
+import type { AxiosPromise, AxiosRequestConfig, AxiosResponse } from './types'
 import xhr from './xhr'
 
+// TODO: 使用async await 替换写法
 function axios(config: AxiosRequestConfig): AxiosPromise {
   processConfig(config)
-  return xhr(config)
+  return xhr(config).then((res) => transformResponseData(res))
 }
 
 function processConfig(config: AxiosRequestConfig) {
@@ -26,4 +27,9 @@ function transformHeaders(config: AxiosRequestConfig) {
   const { headers = {}, data } = config
   return processHeaders(headers, data)
 }
+
+function transformResponseData(res: AxiosResponse) {
+  return Object.assign(res, { data: transformResponse(res.data) })
+}
+
 export default axios

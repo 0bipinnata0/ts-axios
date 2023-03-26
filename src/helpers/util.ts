@@ -15,3 +15,7 @@ export function isFalsy(val: any): boolean {
 export function isArray<T>(val: any): val is Array<T> {
   return Array.isArray(val)
 }
+
+export function isString(val: any): val is string {
+  return typeof val === 'string'
+}

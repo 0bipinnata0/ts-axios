@@ -115,3 +115,16 @@ axios({
 // date.toIOSString();
 // /base/get?date=2022-02-02T02:22:22.030Z
 ```
+
+# 在不设置 responseType 的情况下，当服务端返回给我们的数据是字符串类型，尝试把这个转换成一个 json 对象
+
+```ts
+data: "{"a":a, "b":2}"
+```
+
+```ts
+data:{
+  a: 1,
+  b:2
+}
+```
