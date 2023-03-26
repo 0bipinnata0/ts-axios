@@ -10,7 +10,7 @@ const compiler = webpack(webpackConfig)
 
 app.use(
   webpackDevMiddleware(compiler, {
-    publicPath: '/build/',
+    publicPath: '/__build__/',
     stats: {
       colors: true,
       chunks: false,
@@ -32,6 +32,9 @@ router.get('/simple/get', function (req, res) {
   res.json({
     msg: 'Hello World!',
   })
+})
+router.get('/base/get', function (req, res) {
+  res.json(req.query)
 })
 
 app.use(router)
